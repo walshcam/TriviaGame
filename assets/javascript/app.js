@@ -1,15 +1,101 @@
 //Create objects - question, answer1, answer2, answer3, answer4
 
+const question1 = {
+    q : "What does 'Corgi' mean in Welsh?",
+    a1: "Doomslayer",
+    a2: "Dwarf Dog", //Correct
+    a3: "Eater of Kilts",
+    a4: "Royal Dog"
+}
+
+const question2 = {
+    q : "Why are dogs noses wet?",
+    a1 : "It helps with their sense of smell.", //Correct
+    a2 : "To protect their nose from bacteria.",
+    a3 : "To improve doggie kisses",
+    a4 : "Dedication to finally getting that callback for Kleenex commercials."
+}
+
+const question3 = {
+    q : "What type of dog can't bark?",
+    a1 : "Tibetan Cur",
+    a2 : "Pug",
+    a3 : "Eastern Australian Cattle Dog",
+    a4 : "Basenji" //Correct
+}
+
+const question4 = {
+    q : "A guy with a dog is how much more likely to get a girl's phone number?",
+    a1 : "5x",
+    a2 : "3x", //Correct
+    a3 : "2x",
+    a4 : "The dog makes no difference"
+}
+
+const question5 = {
+    q : "What breed has 6 toes on each paw?",
+    a1 : "Norwegian Lundehund", //Correct
+    a2 : "Newfoundland",
+    a3 : "Boston Terrier",
+    a4 : "Chow Chow"
+}
+
+const question6 = {
+    q: "Which food is harmful for dogs?",
+    a1 : "Pumpkins",
+    a2 : "Green Beans",
+    a3 : "Bananas",
+    a4 : "Avacados" //Correct
+}
+
+const question7 = {
+    q : "What is the most popular breed in the United States?",
+    a1 : "Golden Retriever",
+    a2 : "Labradors",
+    a3 : "Pit Bulls",
+    a4 : "Tibetan Mastiff"
+}
+
+const question8 = {
+    q : "How many dogs are in the United States?",
+    a1 : "42",
+    a2 : "100 million",
+    a3 : "100 billion billion",
+    a4 : "75 million"
+}
+
+const question9 = {
+    q : "A dogs ear has at least how many muscles?",
+    a1 : "42",
+    a2 : "18",
+    a3 : "We may never know",
+    a4 : "100 billion billion"
+}
+
+const question10 = {
+    q : "What percentage of dogs sleep in their owner's bed?",
+    a1 : "42%",
+    a2 : "25%",
+    a3 : "65%",
+    a4 : "45%"
+}
+
 //Create array of objects
 
+const questionArray = [question1,question2,question3,question4,question5,question6,question7,question8,question9,question10];
+
+console.log(questionArray)
 
 
-
+//*********************TIMER FUNCTIONS************************** */
 
 
 //Create Timer function for each question
 
 //Create Countdown function
+
+
+//**********************SCREEN DISPLAY FUNCTIONS******************** */
 
 
 
@@ -21,11 +107,15 @@
 
 //Create function for ran out of time screen - 3 seconds
 
+
+//**********************ANSWER TRACKER FUNCTION**************************** */
+
+
 //Create function that tracks correct / incorrect / timeout answers
 
 
 
-//*************ACTIONS ALGORITHM******************** */
+//*******************************ACTIONS ALGORITHM*********************** */
 
 //Get Ready / Explain Rules Screen
 
