@@ -5,7 +5,8 @@ const question1 = {
     a1: "Doomslayer",
     a2: "Dwarf Dog", //Correct
     a3: "Eater of Kilts",
-    a4: "Royal Dog"
+    a4: "Royal Dog",
+    correctAnswer : a2
 }
 
 const question2 = {
@@ -13,7 +14,9 @@ const question2 = {
     a1 : "It helps with their sense of smell.", //Correct
     a2 : "To protect their nose from bacteria.",
     a3 : "To improve doggie kisses",
-    a4 : "Dedication to finally getting that callback for Kleenex commercials."
+    a4 : "Dedication to finally getting that callback for Kleenex commercials.",
+    correctAnswer : a1
+
 }
 
 const question3 = {
@@ -21,7 +24,8 @@ const question3 = {
     a1 : "Tibetan Cur",
     a2 : "Pug",
     a3 : "Eastern Australian Cattle Dog",
-    a4 : "Basenji" //Correct
+    a4 : "Basenji", //Correct
+    correctAnswer : a4
 }
 
 const question4 = {
@@ -29,7 +33,8 @@ const question4 = {
     a1 : "5x",
     a2 : "3x", //Correct
     a3 : "2x",
-    a4 : "The dog makes no difference"
+    a4 : "The dog makes no difference",
+    correctAnswer : a2
 }
 
 const question5 = {
@@ -37,7 +42,8 @@ const question5 = {
     a1 : "Norwegian Lundehund", //Correct
     a2 : "Newfoundland",
     a3 : "Boston Terrier",
-    a4 : "Chow Chow"
+    a4 : "Chow Chow",
+    correctAnswer : a1
 }
 
 const question6 = {
@@ -45,15 +51,17 @@ const question6 = {
     a1 : "Pumpkins",
     a2 : "Green Beans",
     a3 : "Bananas",
-    a4 : "Avacados" //Correct
+    a4 : "Avacados", //Correct
+    correctAnswer : a4
 }
 
 const question7 = {
     q : "What is the most popular breed in the United States?",
     a1 : "Golden Retriever",
-    a2 : "Labradors",
+    a2 : "Labradors", //Correct
     a3 : "Pit Bulls",
-    a4 : "Tibetan Mastiff"
+    a4 : "Tibetan Mastiff",
+    correctAnswer : a2
 }
 
 const question8 = {
@@ -61,15 +69,17 @@ const question8 = {
     a1 : "42",
     a2 : "100 million",
     a3 : "100 billion billion",
-    a4 : "75 million"
+    a4 : "75 million", //Correct
+    correctAnswer : a4
 }
 
 const question9 = {
     q : "A dogs ear has at least how many muscles?",
     a1 : "42",
-    a2 : "18",
+    a2 : "18", //Correct
     a3 : "We may never know",
-    a4 : "100 billion billion"
+    a4 : "100 billion billion",
+    correctAnswer : a2
 }
 
 const question10 = {
@@ -77,7 +87,8 @@ const question10 = {
     a1 : "42%",
     a2 : "25%",
     a3 : "65%",
-    a4 : "45%"
+    a4 : "45%", //Correct
+    correctAnswer : a4
 }
 
 //Create array of objects
@@ -88,7 +99,11 @@ console.log(questionArray)
 
 
 //*********************TIMER FUNCTIONS************************** */
+//This is for the click event
+window.onload = function() {
+    $("start")
 
+}
 
 //Create Timer function for each question
 
