@@ -101,7 +101,7 @@ console.log(questionArray)
 //*********************TIMER FUNCTIONS************************** */
 //This is for the click event
 window.onload = function() {
-    $("#button").click(gameAlgorithm)
+    gameAlgorithm()
 }
 
 //Global Variables
@@ -109,6 +109,7 @@ window.onload = function() {
 let wins = 0;
 let losses = 0;
 let timeUps = 0;
+let timeRemaining;
 
 //Timer Variables
 let clockRunning = false;
@@ -140,7 +141,7 @@ function increase () {
     time++;
     var seconds = Math.floor(time/360);
 
-    let timeRemaining = questionTime - time;
+    timeRemaining = questionTime - time;
     $("#timer").text("Time Remaining: " + timeRemaining + "seconds!");
     console.log(responseTime);
     console.log(questionTime)
@@ -167,7 +168,7 @@ function increase () {
     time++;
     var seconds = Math.floor(time/360);
 
-    let timeRemaining = responseScreenTime - time;
+    timeRemaining = responseScreenTime - time;
     console.log(responseTime);
     console.log("Time is: " + time);
 
@@ -190,17 +191,17 @@ function startButtonHide() {
 function questionScreen() {
     start()
     startButtonHide()
-    $('#question').text(questionArray[i].q);
-    $("#answer1").text(questionArray[i].a1);
-    $("#answer2").text(questionArray[i].a2);
-    $("#answer3").text(questionArray[i].a3);
-    $("#answer4").text(questionArray[i].a4);
+    $('#question').text(questionArray[j].q);
+    $("#answer1").text(questionArray[j].a1);
+    $("#answer2").text(questionArray[j].a2);
+    $("#answer3").text(questionArray[j].a3);
+    $("#answer4").text(questionArray[j].a4);
     if (('#timer').attr('text').indexOf("Time Is Up!") === -1) {
         clearTimer()
         timeIsUpScreen()
     }
     $("answer1").on('click', function() {
-        if (questionArray[i].correctAnswer === 'a1') {
+        if (questionArray[j].correctAnswer === 'a1') {
             clearTimer()
             congratulationsScreen()
         }
@@ -210,7 +211,7 @@ function questionScreen() {
         }
     });
     $("answer2").on('click', function() {
-        if (questionArray[i].correctAnswer === 'a2') {
+        if (questionArray[j].correctAnswer === 'a2') {
             clearTimer()
             congratulationsScreen()
         }
@@ -220,7 +221,7 @@ function questionScreen() {
         }
     });
     $("answer3").on('click', function() {
-        if (questionArray[i].correctAnswer === 'a3') {
+        if (questionArray[j].correctAnswer === 'a3') {
             clearTimer()
             congratulationsScreen()
         }
@@ -230,7 +231,7 @@ function questionScreen() {
         }
     });
     $("answer4").on('click', function() {
-        if (questionArray[i].correctAnswer === 'a4') {
+        if (questionArray[j].correctAnswer === 'a4') {
             clearTimer()
             congratulationsScreen()
         }
@@ -310,7 +311,59 @@ function finalScoreScreen() {
 //*******************************ACTIONS ALGORITHM*********************** */
 function gameAlgorithm () {
     for (let j = 0; j < questionArray.length; j++) {
-        questionScreen()
+        console.log("gameAlgorithm");
+        
+        start()
+        startButtonHide()
+        $('#question').text(questionArray[j].q);
+        $("#answer1").text(questionArray[j].a1);
+        $("#answer2").text(questionArray[j].a2);
+        $("#answer3").text(questionArray[j].a3);
+        $("#answer4").text(questionArray[j].a4);
+        if ($("timer:contains('Time Is Up!)")) {
+            clearTimer()
+            timeIsUpScreen()
+        }
+        $("answer1").on('click', function() {
+            if (questionArray[j].correctAnswer === 'a1') {
+                clearTimer()
+                congratulationsScreen()
+            }
+            else {
+                clearTimer()
+                wrongAnswerScreen()
+            }
+            });
+        $("answer2").on('click', function() {
+            if (questionArray[j].correctAnswer === 'a2') {
+                clearTimer()
+                congratulationsScreen()
+            }
+            else {
+                clearTimer()
+                wrongAnswerScreen()
+            }
+        });
+        $("answer3").on('click', function() {
+            if (questionArray[j].correctAnswer === 'a3') {
+                clearTimer()
+                congratulationsScreen()
+            }
+            else {
+                clearTimer()
+                wrongAnswerScreen()
+            }
+        });
+        $("answer4").on('click', function() {
+            if (questionArray[j].correctAnswer === 'a4') {
+                clearTimer()
+                congratulationsScreen()
+            }
+            else {
+                clearTimer()
+                wrongAnswerScreen()
+            }
+        });
         console.log(j)
     }
     finalScoreScreen()
