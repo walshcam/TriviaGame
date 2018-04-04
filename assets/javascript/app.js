@@ -109,7 +109,8 @@ window.onload = function() {
 let clockRunning = false;
 let time = 0;
 let responseTime;
-let questionTime = 25;
+const questionTime = 25;
+const responseScreenTime = 5;
 
 function clearTimer() {
     clearInterval(responseTime);
@@ -121,6 +122,15 @@ function clearTimer() {
 }
 
 //Create Timer function for each question
+function start() {
+    if (!clockRunning) {
+        clockRunning = true;
+        console.log(clockRunning);
+        $("#timer").text("Time Remaining: 25 seconds");
+        responseTime = setInterval(increase,1000); 
+    }
+}
+
 function increase () {
     time++;
     var seconds = Math.floor(time/360);
@@ -138,16 +148,29 @@ function increase () {
 
 }
 
-function start() {
+//Create Timer For Each Response Screen
+
+function startResponseScreen() {
     if (!clockRunning) {
         clockRunning = true;
         console.log(clockRunning);
-        $("#timer").text("Time Remaining: 25 seconds");
         responseTime = setInterval(increase,1000); 
     }
 }
 
-//Create Countdown function
+function increase () {
+    time++;
+    var seconds = Math.floor(time/360);
+
+    let timeRemaining = responseScreenTime - time;
+    console.log(responseTime);
+    console.log("Time is: " + time);
+
+    if (questionTime === time){
+        clearTimer()   
+    }
+
+}
 
 
 //**********************QUESTION SCREEN DISPLAY******************** */
@@ -167,47 +190,47 @@ function questionScreen() {
     $("#answer3").text(questionArray[i].a3);
     $("#answer4").text(questionArray[i].a4);
     if (('#timer').attr('text').indexOf("Time Is Up!") === -1) {
-        timeIsUpScreen()
         clearTimer()
+        timeIsUpScreen()
     }
     $("answer1").on('click', function() {
         if (questionArray[i].correctAnswer === 'a1') {
-            congratulationsScreen()
             clearTimer()
+            congratulationsScreen()
         }
         else {
-            wrongAnswerScreen()
             clearTimer()
+            wrongAnswerScreen()
         }
     });
     $("answer2").on('click', function() {
         if (questionArray[i].correctAnswer === 'a2') {
-            congratulationsScreen()
             clearTimer()
+            congratulationsScreen()
         }
         else {
-            wrongAnswerScreen()
             clearTimer()
+            wrongAnswerScreen()
         }
     });
     $("answer3").on('click', function() {
         if (questionArray[i].correctAnswer === 'a3') {
-            congratulationsScreen()
             clearTimer()
+            congratulationsScreen()
         }
         else {
-            wrongAnswerScreen()
             clearTimer()
+            wrongAnswerScreen()
         }
     });
     $("answer4").on('click', function() {
         if (questionArray[i].correctAnswer === 'a4') {
-            congratulationsScreen()
             clearTimer()
+            congratulationsScreen()
         }
         else {
-            wrongAnswerScreen()
             clearTimer()
+            wrongAnswerScreen()
         }
     });
     
@@ -228,7 +251,7 @@ function wrongAnswerScreen() {
 
 //Create function for ran out of time screen - 3 seconds
 function timeIsUpScreen() {
-    
+
 }
 
 
