@@ -6,7 +6,7 @@ const question1 = {
     a2: "Dwarf Dog", //Correct
     a3: "Eater of Kilts",
     a4: "Royal Dog",
-    correctAnswer : a2
+    correctAnswer : "a2"
 }
 
 const question2 = {
@@ -15,7 +15,7 @@ const question2 = {
     a2 : "To protect their nose from bacteria.",
     a3 : "To improve doggie kisses",
     a4 : "Dedication to finally getting that callback for Kleenex commercials.",
-    correctAnswer : a1
+    correctAnswer : 'a1'
 
 }
 
@@ -25,7 +25,7 @@ const question3 = {
     a2 : "Pug",
     a3 : "Eastern Australian Cattle Dog",
     a4 : "Basenji", //Correct
-    correctAnswer : a4
+    correctAnswer : 'a4'
 }
 
 const question4 = {
@@ -34,7 +34,7 @@ const question4 = {
     a2 : "3x", //Correct
     a3 : "2x",
     a4 : "The dog makes no difference",
-    correctAnswer : a2
+    correctAnswer : 'a2'
 }
 
 const question5 = {
@@ -43,7 +43,7 @@ const question5 = {
     a2 : "Newfoundland",
     a3 : "Boston Terrier",
     a4 : "Chow Chow",
-    correctAnswer : a1
+    correctAnswer : "a1"
 }
 
 const question6 = {
@@ -52,7 +52,7 @@ const question6 = {
     a2 : "Green Beans",
     a3 : "Bananas",
     a4 : "Avacados", //Correct
-    correctAnswer : a4
+    correctAnswer : "a4"
 }
 
 const question7 = {
@@ -61,7 +61,7 @@ const question7 = {
     a2 : "Labradors", //Correct
     a3 : "Pit Bulls",
     a4 : "Tibetan Mastiff",
-    correctAnswer : a2
+    correctAnswer : "a2"
 }
 
 const question8 = {
@@ -70,7 +70,7 @@ const question8 = {
     a2 : "100 million",
     a3 : "100 billion billion",
     a4 : "75 million", //Correct
-    correctAnswer : a4
+    correctAnswer : "a4"
 }
 
 const question9 = {
@@ -79,7 +79,7 @@ const question9 = {
     a2 : "18", //Correct
     a3 : "We may never know",
     a4 : "100 billion billion",
-    correctAnswer : a2
+    correctAnswer : "a2"
 }
 
 const question10 = {
@@ -88,7 +88,7 @@ const question10 = {
     a2 : "25%",
     a3 : "65%",
     a4 : "45%", //Correct
-    correctAnswer : a4
+    correctAnswer : "a4"
 }
 
 //Create array of objects
@@ -101,26 +101,135 @@ console.log(questionArray)
 //*********************TIMER FUNCTIONS************************** */
 //This is for the click event
 window.onload = function() {
-    $("start")
+    $("#button").click(start)
+}
 
+
+//Timer Variables
+let clockRunning = false;
+let time = 0;
+let responseTime;
+let questionTime = 25;
+
+function clearTimer() {
+    clearInterval(responseTime);
+    responseTime = 0;
+    time = 0;
+    console.log(responseTime);
+    console.log(time);
+    clockRunning = false;
 }
 
 //Create Timer function for each question
+function increase () {
+    time++;
+    var seconds = Math.floor(time/360);
+
+    let timeRemaining = questionTime - time;
+    $("#timer").text("Time Remaining: " + timeRemaining + "seconds!");
+    console.log(responseTime);
+    console.log(questionTime)
+    console.log("Time is: " + time);
+
+    if (questionTime === time){
+        $('#timer').text("Time Is Up!");
+        clearTimer()   
+    }
+
+}
+
+function start() {
+    if (!clockRunning) {
+        clockRunning = true;
+        console.log(clockRunning);
+        $("#timer").text("Time Remaining: 25 seconds");
+        responseTime = setInterval(increase,1000); 
+    }
+}
 
 //Create Countdown function
 
 
-//**********************SCREEN DISPLAY FUNCTIONS******************** */
+//**********************QUESTION SCREEN DISPLAY******************** */
 
+//Hide Start Button
 
+function startButtonHide() {
+    $("#button").hide();
+}
+
+function questionScreen() {
+    start()
+    startButtonHide()
+    $('#question').text(questionArray[i].q);
+    $("#answer1").text(questionArray[i].a1);
+    $("#answer2").text(questionArray[i].a2);
+    $("#answer3").text(questionArray[i].a3);
+    $("#answer4").text(questionArray[i].a4);
+    if (('#timer').attr('text').indexOf("Time Is Up!") === -1) {
+        timeIsUpScreen()
+        clearTimer()
+    }
+    $("answer1").on('click', function() {
+        if (questionArray[i].correctAnswer === 'a1') {
+            congratulationsScreen()
+            clearTimer()
+        }
+        else {
+            wrongAnswerScreen()
+            clearTimer()
+        }
+    });
+    $("answer2").on('click', function() {
+        if (questionArray[i].correctAnswer === 'a2') {
+            congratulationsScreen()
+            clearTimer()
+        }
+        else {
+            wrongAnswerScreen()
+            clearTimer()
+        }
+    });
+    $("answer3").on('click', function() {
+        if (questionArray[i].correctAnswer === 'a3') {
+            congratulationsScreen()
+            clearTimer()
+        }
+        else {
+            wrongAnswerScreen()
+            clearTimer()
+        }
+    });
+    $("answer4").on('click', function() {
+        if (questionArray[i].correctAnswer === 'a4') {
+            congratulationsScreen()
+            clearTimer()
+        }
+        else {
+            wrongAnswerScreen()
+            clearTimer()
+        }
+    });
+    
+    
+}
 
 //Create function that will display question - Timer function
 
 //Create function for congratulation screen - 3 seconds
+function congratulationsScreen () {
+
+}
 
 //Create function for wrong answer screen - 3 seconds
+function wrongAnswerScreen() {
+
+}
 
 //Create function for ran out of time screen - 3 seconds
+function timeIsUpScreen() {
+    
+}
 
 
 //**********************ANSWER TRACKER FUNCTION**************************** */
