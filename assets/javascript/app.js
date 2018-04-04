@@ -101,7 +101,7 @@ console.log(questionArray)
 //*********************TIMER FUNCTIONS************************** */
 //This is for the click event
 window.onload = function() {
-    $("#button").click(start)
+    $("#button").click(gameAlgorithm)
 }
 
 //Global Variables
@@ -247,6 +247,8 @@ function questionScreen() {
 
 //Create function for congratulation screen - 3 seconds
 function congratulationsScreen () {
+    console.log('congratulationsScreen');
+    
     $('#question').text("You Are Correct!")
     $("#answer1").empty();
     $("#answer2").empty();
@@ -259,18 +261,20 @@ function congratulationsScreen () {
 
 //Create function for wrong answer screen - 3 seconds
 function wrongAnswerScreen() {
-    $('#question').text("You Are Wrong!")
+    console.log('wrongAnswerScreen');
+    $('#question').text("You Are Wrong!");
     $("#answer1").empty();
     $("#answer2").empty();
     $("#answer3").empty();
     $("#answer4").empty();
-    $("#gif").attr('src',"images/performing season 15 GIF-downsized.gif")
+    $("#gif").attr('src',"images/performing season 15 GIF-downsized.gif");
     startResponseScreen()
     losses++;
 }
 
 //Create function for ran out of time screen - 3 seconds
 function timeIsUpScreen() {
+    console.log('timeIsUpScreen')
     $('#question').text("Time Is Up!")
     $("#answer1").empty();
     $("#answer2").empty();
@@ -285,6 +289,7 @@ function timeIsUpScreen() {
 //********************FINAL SCREEN DISPLAY******************************** */
 
 function finalScoreScreen() {
+    console.log('finalScoreScreen')
     $("#timer").text("Correct: " + wins +"     Wrong: " + losses)
     $('#question').text("No Answers: " + timeUps)
 
@@ -305,8 +310,10 @@ function finalScoreScreen() {
 //*******************************ACTIONS ALGORITHM*********************** */
 function gameAlgorithm () {
     for (let j = 0; j < questionArray.length; j++) {
-    
+        questionScreen()
+        console.log(j)
     }
+    finalScoreScreen()
 }
 //Get Ready / Explain Rules Screen
 
