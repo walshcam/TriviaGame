@@ -110,6 +110,7 @@ let wins = 0;
 let losses = 0;
 let timeUps = 0;
 let timeRemaining;
+let question;
 
 //Timer Variables
 let clockRunning = false;
@@ -120,6 +121,7 @@ const responseScreenTime = 5;
 
 function clearTimer() {
     clearInterval(responseTime);
+    clearInterval(question);
     responseTime = 0;
     time = 0;
     console.log(responseTime);
@@ -312,59 +314,79 @@ function finalScoreScreen() {
 function gameAlgorithm () {
     for (let j = 0; j < questionArray.length; j++) {
         console.log("gameAlgorithm");
-        
-        start()
         startButtonHide()
-        $('#question').text(questionArray[j].q);
-        $("#answer1").text(questionArray[j].a1);
-        $("#answer2").text(questionArray[j].a2);
-        $("#answer3").text(questionArray[j].a3);
-        $("#answer4").text(questionArray[j].a4);
-        if ($("timer:contains('Time Is Up!)")) {
-            clearTimer()
-            timeIsUpScreen()
-        }
-        $("answer1").on('click', function() {
-            if (questionArray[j].correctAnswer === 'a1') {
+
+        function questionFunction() {
+            time++;
+            var seconds = Math.floor(time/360);
+
+            timeRemaining = responseScreenTime - time;
+            console.log(responseTime);
+            console.log("Time is: " + time);
+
+            if (questionTime === time){
                 clearTimer()
-                congratulationsScreen()
+                $("#gif").removeAttr('src')   
             }
-            else {
+
+            //Question Screen
+            $('#question').text(questionArray[j].q);
+            $("#answer1").text(questionArray[j].a1);
+            $("#answer2").text(questionArray[j].a2);
+            $("#answer3").text(questionArray[j].a3);
+            $("#answer4").text(questionArray[j].a4);
+            if (timeRemaining ===0) {
                 clearTimer()
-                wrongAnswerScreen()
+                timeIsUpScreen()
             }
+            $("answer1").on('click', function() {
+                if (questionArray[j].correctAnswer === 'a1') {
+                    clearTimer()
+                    congratulationsScreen()
+                }
+                else {
+                    clearTimer()
+                    wrongAnswerScreen()
+                }
+                });
+            $("answer2").on('click', function() {
+                if (questionArray[j].correctAnswer === 'a2') {
+                    clearTimer()
+                    congratulationsScreen()
+                }
+                else {
+                    clearTimer()
+                    wrongAnswerScreen()
+                }
             });
-        $("answer2").on('click', function() {
-            if (questionArray[j].correctAnswer === 'a2') {
-                clearTimer()
-                congratulationsScreen()
-            }
-            else {
-                clearTimer()
-                wrongAnswerScreen()
-            }
-        });
-        $("answer3").on('click', function() {
-            if (questionArray[j].correctAnswer === 'a3') {
-                clearTimer()
-                congratulationsScreen()
-            }
-            else {
-                clearTimer()
-                wrongAnswerScreen()
-            }
-        });
-        $("answer4").on('click', function() {
-            if (questionArray[j].correctAnswer === 'a4') {
-                clearTimer()
-                congratulationsScreen()
-            }
-            else {
-                clearTimer()
-                wrongAnswerScreen()
-            }
-        });
-        console.log(j)
+            $("answer3").on('click', function() {
+                if (questionArray[j].correctAnswer === 'a3') {
+                    clearTimer()
+                    congratulationsScreen()
+                }
+                else {
+                    clearTimer()
+                    wrongAnswerScreen()
+                }
+            });
+            $("answer4").on('click', function() {
+                if (questionArray[j].correctAnswer === 'a4') {
+                    clearTimer()
+                    congratulationsScreen()
+                }
+                else {
+                    clearTimer()
+                    wrongAnswerScreen()
+                }
+            });
+        }
+
+            //CLOCK TIMER
+            console.log(clockRunning);
+            $("#timer").text("Time Remaining: 25 seconds");
+            question = setInterval(questionFunction,30000);
+            responseTime = setInterval(increase,1000)
+            console.log(j)
     }
     finalScoreScreen()
 }
