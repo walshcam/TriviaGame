@@ -104,6 +104,11 @@ window.onload = function() {
     $("#button").click(start)
 }
 
+//Global Variables
+
+let wins = 0;
+let losses = 0;
+let timeUps = 0;
 
 //Timer Variables
 let clockRunning = false;
@@ -167,7 +172,8 @@ function increase () {
     console.log("Time is: " + time);
 
     if (questionTime === time){
-        clearTimer()   
+        clearTimer()
+        $("#gif").removeAttr('src')   
     }
 
 }
@@ -237,24 +243,58 @@ function questionScreen() {
     
 }
 
-//Create function that will display question - Timer function
+//***************INTERMITTION SCREEN DISPLAYS************************* */
 
 //Create function for congratulation screen - 3 seconds
 function congratulationsScreen () {
-
+    $('#question').text("You Are Correct!")
+    $("#answer1").empty();
+    $("#answer2").empty();
+    $("#answer3").empty();
+    $("#answer4").empty();
+    $("#gif").attr('src',"images/performing season 15 GIF-downsized.gif")
+    startResponseScreen()
+    wins++;
 }
 
 //Create function for wrong answer screen - 3 seconds
 function wrongAnswerScreen() {
-
+    $('#question').text("You Are Wrong!")
+    $("#answer1").empty();
+    $("#answer2").empty();
+    $("#answer3").empty();
+    $("#answer4").empty();
+    $("#gif").attr('src',"images/performing season 15 GIF-downsized.gif")
+    startResponseScreen()
+    losses++;
 }
 
 //Create function for ran out of time screen - 3 seconds
 function timeIsUpScreen() {
-
+    $('#question').text("Time Is Up!")
+    $("#answer1").empty();
+    $("#answer2").empty();
+    $("#answer3").empty();
+    $("#answer4").empty();
+    $("#gif").attr('src',"images/performing season 15 GIF-downsized.gif")
+    startResponseScreen()
+    timeUps++;
 }
 
 
+//********************FINAL SCREEN DISPLAY******************************** */
+
+function finalScoreScreen() {
+    $("#timer").text("Correct: " + wins +"     Wrong: " + losses)
+    $('#question').text("No Answers: " + timeUps)
+
+    $("#answer1").empty();
+    $("#answer2").empty();
+    $("#answer3").empty();
+    $("#answer4").empty();
+    $("#gif").attr('src',"images/performing season 15 GIF-downsized.gif")
+    timeUps++;
+}
 //**********************ANSWER TRACKER FUNCTION**************************** */
 
 
@@ -263,7 +303,11 @@ function timeIsUpScreen() {
 
 
 //*******************************ACTIONS ALGORITHM*********************** */
-
+function gameAlgorithm () {
+    for (let j = 0; j < questionArray.length; j++) {
+    
+    }
+}
 //Get Ready / Explain Rules Screen
 
 //Question Screen
