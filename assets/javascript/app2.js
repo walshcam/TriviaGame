@@ -93,7 +93,7 @@ const question10 = {
 
 //Create array of objects
 
-const questionArray = [question1,question2,question3,question4,question5,question6,question7,question8,question9,question10];
+const questionArray = [question1,question2,question3,question4,question5,question6,question7,question8,question9,question10,5];
 
 console.log("questionArray: " + questionArray);
 
@@ -111,6 +111,12 @@ let wins = 0;
 let losses = 0;
 // Questions Timed Out
 let timeUps = 0;
+
+let winner = false;
+let loser = false;
+let timeUpper = false;
+
+
 // Time left in screen - timeRemaining = 0 means question timed out or intermittion screen will end
 let timeRemaining;
 //question count
@@ -139,8 +145,8 @@ function congratulationsScreen () {
     $("#answer3").empty();
     $("#answer4").empty();
     $("#gif").show();
-    startResponseScreen()
-    wins++;
+    startResponseScreen();
+    winner = true;
 }
 
 //Create function for wrong answer screen - 3 seconds
@@ -154,7 +160,7 @@ function wrongAnswerScreen() {
     $("#answer4").empty();
     $("#gif").show();
     startResponseScreen()
-    losses++;
+    loser = true;
 }
 
 //Create function for ran out of time screen - 3 seconds
@@ -168,7 +174,7 @@ function timeIsUpScreen() {
     $("#answer4").empty();
     $("#gif").show();
     startResponseScreen()
-    timeUps++;
+    timeUpper = true;
 }
 
 function clearTimer() {
@@ -191,7 +197,6 @@ function finalScoreScreen() {
     $("#answer3").empty();
     $("#answer4").empty();
     $("#gif").show();
-    timeUps++;
 }
 
 //**Increase Timer In Game Screen */
@@ -216,7 +221,6 @@ function increase () {
 
 function startResponseScreen() {
         responseTime = setInterval(increaseResponse,1000);
-        count++; 
 }
 
 function increaseResponse () {
@@ -230,10 +234,23 @@ function increaseResponse () {
     if (timeRemaining === 0){
         nextQuestion = true;
         clearTimer()
-        timeIsUpScreen()
     }
     if (nextQuestion) {
-        if (count === questionArray.length) {
+        if (count === questionArray.length-1) {
+            //Register Last Response
+            if(winner) {
+                wins++;
+                winner = false;
+            }
+            if(loser) {
+                losses++;
+                loser = false;
+            }
+            if(timeUpper) {
+                timeUps++;
+                timeUpper = false;
+            }
+            //Show Final Score Screen
             clearTimer()
             finalScoreScreen()
         }
@@ -249,6 +266,9 @@ function increaseResponse () {
 function gameAlgorithm () {
     console.log("gameAlgorithm")
     console.log("Count at Game Algorithm is: " + count)
+    console.log("Wins: " + wins)
+    console.log("Loses: " + losses)
+    console.log("TimeUp: " + timeUps)
     //Button was supposed to start the quiz
     $("#button").hide(); 
     $("#gif").hide();   
@@ -259,14 +279,32 @@ function gameAlgorithm () {
 
     //Question Section
 
-    //Changes Display on screen
+    //Changes Display on screen to question
     $('#question').text(questionArray[count].q);
     $("#answer1").text(questionArray[count].a1);
     $("#answer2").text(questionArray[count].a2);
     $("#answer3").text(questionArray[count].a3);
     $("#answer4").text(questionArray[count].a4);
+    count++;
+    // create if statements with booleans to attempt to fix multiple win/lose/timeup counts
+    if(winner) {
+        wins++;
+        winner = false;
+    }
+    if(loser) {
+        losses++;
+        loser = false;
+    }
+    if(timeUpper) {
+        timeUps++;
+        timeUpper = false;
+    }
+    console.log("Wins: " + wins)
+    console.log("Loses: " + losses)
+    console.log("TimeUp: " + timeUps)
+    //Clicking on Answer 1
     $("#answer1").click(function() {
-        if (questionArray[count].correctAnswer === 'a1') {
+        if (questionArray[count-1].correctAnswer === 'a1') {
             clearTimer()
             congratulationsScreen()
         }
@@ -275,8 +313,9 @@ function gameAlgorithm () {
             wrongAnswerScreen()
         }
     });
+    //Clicking on Answer 2
     $("#answer2").click(function() {
-        if (questionArray[count].correctAnswer === 'a2') {
+        if (questionArray[count-1].correctAnswer === 'a2') {
             clearTimer()
             congratulationsScreen()
         }
@@ -285,8 +324,9 @@ function gameAlgorithm () {
             wrongAnswerScreen()
         }
     });
+    //Clicking on Answer 3
     $("#answer3").click(function() {
-        if (questionArray[count].correctAnswer === 'a3') {
+        if (questionArray[count-1].correctAnswer === 'a3') {
             clearTimer()
             congratulationsScreen()
         }
@@ -295,8 +335,9 @@ function gameAlgorithm () {
             wrongAnswerScreen()
         }
     });
+    //Clicking on Answer 4
     $("#answer4").click(function() {
-        if (questionArray[count].correctAnswer === 'a4') {
+        if (questionArray[count-1].correctAnswer === 'a4') {
             clearTimer()
             congratulationsScreen()
         }

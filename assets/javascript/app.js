@@ -330,17 +330,17 @@ function gameAlgorithm () {
             }
 
             //Question Screen
-            $('#question').text(questionArray[j].q);
-            $("#answer1").text(questionArray[j].a1);
-            $("#answer2").text(questionArray[j].a2);
-            $("#answer3").text(questionArray[j].a3);
-            $("#answer4").text(questionArray[j].a4);
+            $('#question').text(questionArray[count].q);
+            $("#answer1").text(questionArray[count].a1);
+            $("#answer2").text(questionArray[count].a2);
+            $("#answer3").text(questionArray[count].a3);
+            $("#answer4").text(questionArray[count].a4);
             if (timeRemaining ===0) {
                 clearTimer()
                 timeIsUpScreen()
             }
             $("answer1").on('click', function() {
-                if (questionArray[j].correctAnswer === 'a1') {
+                if (questionArray[count].correctAnswer === 'a1') {
                     clearTimer()
                     congratulationsScreen()
                 }
@@ -350,7 +350,7 @@ function gameAlgorithm () {
                 }
                 });
             $("answer2").on('click', function() {
-                if (questionArray[j].correctAnswer === 'a2') {
+                if (questionArray[count].correctAnswer === 'a2') {
                     clearTimer()
                     congratulationsScreen()
                 }
@@ -360,7 +360,7 @@ function gameAlgorithm () {
                 }
             });
             $("answer3").on('click', function() {
-                if (questionArray[j].correctAnswer === 'a3') {
+                if (questionArray[count].correctAnswer === 'a3') {
                     clearTimer()
                     congratulationsScreen()
                 }
@@ -370,7 +370,7 @@ function gameAlgorithm () {
                 }
             });
             $("answer4").on('click', function() {
-                if (questionArray[j].correctAnswer === 'a4') {
+                if (questionArray[count].correctAnswer === 'a4') {
                     clearTimer()
                     congratulationsScreen()
                 }
@@ -417,5 +417,3 @@ function gameAlgorithm () {
 // After completing the homework please add the piece to your portfolio. Make sure to add a link to your updated portfolio in the comments section of your homework so the TAs can easily ensure you completed this step when they are grading the assignment. To receive an 'A' on any assignment, you must link to it from your portfolio.
 
 // - - -
-
-
